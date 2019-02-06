@@ -57,7 +57,7 @@ public class PlazaImpl implements Plaza {
                 return shop;
             }
         }
-            throw new NoSuchShopException("There is no shop by the given name");
+            throw new NoSuchShopException("There is no shop by the given name.");
     }
 
     @Override
