@@ -9,6 +9,7 @@ import java.util.List;
 public class PlazaImpl implements Plaza {
 
     private List<Shop> shops;
+    private boolean open;
 
     public PlazaImpl(List<Shop> shops) {
         this.shops = shops;
@@ -16,36 +17,61 @@ public class PlazaImpl implements Plaza {
 
     @Override
     public List<Shop> getShops() throws PlazaIsClosedException {
-        return null;
+        if(!isOpen()) {
+            throw new PlazaIsClosedException("Plaza is closed.");
+        }
+        return shops;
     }
 
     @Override
     public void addShop(Shop shop) throws ShopAlreadyExistsException, PlazaIsClosedException {
-
+        if(!isOpen()) {
+            throw new PlazaIsClosedException("Plaza is closed.");
+        }
+        if(shops.contains(shop)) {
+            throw new ShopAlreadyExistsException("The shop is already exist.");
+        }
+        shops.add(shop);
     }
 
     @Override
     public void removeShop(Shop shop) throws NoSuchShopException, PlazaIsClosedException {
-
+        if(!shops.contains(shop)) {
+            throw new NoSuchShopException("There is no such shop in the plaza.");
+        }
+        if(!isOpen()) {
+            throw new PlazaIsClosedException("Plaza is closed.");
+        }
+        shops.remove(shop);
     }
 
     @Override
     public Shop findShopByName(String name) throws NoSuchShopException, PlazaIsClosedException {
-        return null;
+
+        if(!isOpen()) {
+            throw new PlazaIsClosedException("Plaza is closed.");
+        }
+
+        for(Shop shop: shops) {
+            if(name.equals(shop.getName())) {
+                return shop;
+            }
+        }
+            throw new NoSuchShopException("There is no shop by the given name");
     }
 
     @Override
     public boolean isOpen() {
-        return false;
+        return open;
     }
 
     @Override
     public void open() {
-
+        open = true;
     }
 
     @Override
     public void close() {
-
+        open = false;
     }
 }

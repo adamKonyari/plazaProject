@@ -47,6 +47,9 @@ public class ShopImpl implements Shop {
 
     @Override
     public List<Product> getProducts() throws ShopIsClosedException {
+        if(!isOpen()) {
+            throw new ShopIsClosedException("The shop is closed.");
+        }
         return null;
     }
 
