@@ -12,7 +12,7 @@ import java.util.Map;
 public class ShopImpl implements Shop {
 
     private String name;
-    private boolean open;
+    private boolean open = true;
     private String owner;
     private Map<Long, ShopEntryImpl> products;
 

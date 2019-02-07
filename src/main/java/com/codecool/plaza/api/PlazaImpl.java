@@ -9,10 +9,16 @@ import java.util.List;
 public class PlazaImpl implements Plaza {
 
     private List<Shop> shops;
-    private boolean open;
+    private boolean open = true;
+    private String name;
 
-    public PlazaImpl(List<Shop> shops) {
+    public PlazaImpl(String name, List<Shop> shops) {
+        this.name = name;
         this.shops = shops;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
