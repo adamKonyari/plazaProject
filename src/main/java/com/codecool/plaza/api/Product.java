@@ -1,12 +1,15 @@
 package com.codecool.plaza.api;
 
+import com.codecool.plaza.api.enums.Gender;
+
 public abstract class Product {
 
     protected long barcode;
     protected String name;
     protected String manufacturer;
+    protected Gender gender;
 
-    protected Product(long barcode, String name, String manufacturer) {
+    protected Product(long barcode, String name, String manufacturer, Gender gender) {
         this.barcode = barcode;
         this.name = name;
         this.manufacturer = manufacturer;
@@ -22,6 +25,10 @@ public abstract class Product {
 
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     @Override
